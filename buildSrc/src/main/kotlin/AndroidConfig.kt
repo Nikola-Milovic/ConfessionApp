@@ -7,9 +7,9 @@ object AndroidConfig {
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"
 
-    const val ID = "com.nikolam.audiobookmate"
+    const val ID = "com.nikolam.confession"
     const val TEST_INSTRUMENTATION_RUNNER =
-            "com.nikolam.menu.RestaurantOwnerTestRunner" //"android.support.test.runner.AndroidJUnitRunner"
+        "android.support.test.runner.AndroidJUnitRunner" //"android.support.test.runner.AndroidJUnitRunner"
 }
 
 interface BuildType {
