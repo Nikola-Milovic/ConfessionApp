@@ -62,6 +62,8 @@ dependencies {
     api(LibraryDependency.KOIN_ANDROID_SCOPE)
     api(LibraryDependency.KOIN_ANDROID_VIEWMODEL)
 
+    implementation(project(":common"))
+
     implementation(LibraryDependency.EASY_PERMISSION)
 
     addTestDependencies()

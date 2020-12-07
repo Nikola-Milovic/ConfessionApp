@@ -38,6 +38,8 @@ android {
 
 dependencies {
     api(LibraryDependency.TIMBER)
+    api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
+    api(LibraryDependency.NAVIGATION_UI_KTX)
 
     addTestDependencies()
 }

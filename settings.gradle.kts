@@ -1,8 +1,8 @@
-include(":common")
 rootProject.name = "confession"
 rootProject.buildFileName = "build.gradle.kts"
 
 include(
         ":app",
-        ":library_test_utils"
+        ":library_test_utils",
+        ":common"
 )
