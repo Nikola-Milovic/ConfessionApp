@@ -22,10 +22,7 @@ private object LibraryVersion {
     const val EASY_PERMISSION = "3.0.0"
     const val FLOATING_ACTION_BUTTON = "1.10.1"
     const val ROOM = "2.2.5"
-
-    const val FFMPEG = "4.3.2"
-
-    const val SERIALIZATION_RUNTIME = "1.0.0-RC2"
+    const val RETROFIT = "2.9.0"
 }
 
 object LibraryDependency {
@@ -80,6 +77,5 @@ object LibraryDependency {
     const val ROOM_COMPILER = "androidx.room:room-compiler:${LibraryVersion.ROOM}"
     const val ROOM_KTX = "androidx.room:room-ktx:${LibraryVersion.ROOM}"
 
-    const val FFMPEG = "com.arthenica:mobile-ffmpeg-audio:${LibraryVersion.FFMPEG}"
-    const val SERIALIZATION_JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:${LibraryVersion.SERIALIZATION_RUNTIME}"
+    const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
 }

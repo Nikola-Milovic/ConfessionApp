@@ -1,3 +1,4 @@
+include(":common")
 rootProject.name = "confession"
 rootProject.buildFileName = "build.gradle.kts"
 
