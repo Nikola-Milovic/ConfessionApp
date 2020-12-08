@@ -1,57 +1,49 @@
 package com.nikolam.feature_newconfession.presentation
 
-import androidx.lifecycle.ViewModel
-import com.nikolam.common.BaseAPIUrl
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import timber.log.Timber
+import androidx.lifecycle.viewModelScope
+import com.nikolam.common.viewmodel.BaseAction
+import com.nikolam.common.viewmodel.BaseViewModel
+import com.nikolam.common.viewmodel.BaseViewState
+import com.nikolam.feature_newconfession.domain.usecases.SaveConfessionUseCase
+import kotlinx.coroutines.launch
 
+internal class NewConfessionViewModel(private val saveConfessionUseCase: SaveConfessionUseCase)
+    : BaseViewModel<NewConfessionViewModel.ViewState, NewConfessionViewModel.Action>(ViewState()) {
 
-class NewConfessionViewModel : ViewModel(), KoinComponent {
+    override fun onReduceState(viewAction: Action) = when (viewAction) {
+        is Action.ConfessionSavingSuccess -> state.copy(
+                isLoading = false,
+                isError = false,
+        )
+        is Action.ConfessionSavingFailure -> state.copy(
+                isLoading = false,
+                isError = true,
+        )
+    }
 
-    val retrofit : Retrofit by inject()
-
-
-    init {
-        val service: ConfessionService = retrofit.create(ConfessionService::class.java)
-        val call = service.createConfession(newConfession("Hello MY BOYS FROM ANDROID APPLICATION"))
-        call.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                Timber.d("""Response is ${response.body().toString()}""")
+    fun saveConfession(text: String) {
+        viewModelScope.launch {
+            saveConfessionUseCase.execute(text).also { result ->
+                val action = when (result) {
+                    is SaveConfessionUseCase.Result.Success ->
+                        Action.ConfessionSavingSuccess
+                    is SaveConfessionUseCase.Result.Error ->
+                        Action.ConfessionSavingFailure
+                }
+                sendAction(action)
             }
+        }
+    }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Timber.d("Failed fetch with %s", t.localizedMessage)
-            }
+    internal data class ViewState(
+            val isLoading: Boolean = false,
+            val isError: Boolean = false,
+    ) : BaseViewState
 
-        })
+    internal sealed class Action : BaseAction {
+        object ConfessionSavingSuccess : Action()
+        object ConfessionSavingFailure : Action()
     }
 
 
 }
-
-interface ConfessionService {
-    @GET("$BaseAPIUrl/")
-    fun listRepos(): Call<List<Confession?>?>
-
-    @POST("$BaseAPIUrl/")
-    fun createConfession(@Body confession: newConfession): Call<String>
-}
-
-data class newConfession(val text: String)
-
-data class Confession(
-        val _id: String,
-        val text: String,
-        val date: String,
-        val likes: Int,
-        val dislikes: Int,
-        val _v: Int
-)

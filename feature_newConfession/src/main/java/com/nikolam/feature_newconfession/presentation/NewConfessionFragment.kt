@@ -9,32 +9,40 @@ import android.view.View
 import android.view.ViewGroup
 import com.nikolam.common.di.networkingModule
 import com.nikolam.feature_newconfession.R
+import com.nikolam.feature_newconfession.databinding.NewConfessionFragmentBinding
+import com.nikolam.feature_newconfession.di.newConfessionModule
+import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class NewConfessionFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = NewConfessionFragment()
-    }
+    private val viewModel: NewConfessionViewModel by inject()
 
-    private lateinit var viewModel: NewConfessionViewModel
+    private var _binding: NewConfessionFragmentBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.new_confession_fragment, container, false)
-    }
+    private val binding get() = _binding!!
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewConfessionViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = NewConfessionFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        binding.confessButton.setOnClickListener {
+            viewModel.saveConfession(binding.confessionTextEditText.text.toString())
+        }
+
+        return view
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        loadKoinModules(networkingModule)
+        loadKoinModules(listOf(networkingModule, newConfessionModule))
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        unloadKoinModules(newConfessionModule)
     }
 
 }
