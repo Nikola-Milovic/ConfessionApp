@@ -4,5 +4,6 @@ rootProject.buildFileName = "build.gradle.kts"
 include(
         ":app",
         ":library_test_utils",
-        ":common"
+        ":common",
+        ":feature_newConfession"
 )

@@ -63,6 +63,7 @@ dependencies {
     api(LibraryDependency.KOIN_ANDROID_VIEWMODEL)
 
     implementation(project(":common"))
+    implementation(project(":feature_newConfession"))
 
     implementation(LibraryDependency.EASY_PERMISSION)
 

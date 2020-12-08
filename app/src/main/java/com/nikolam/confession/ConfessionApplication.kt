@@ -8,13 +8,13 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
-class ConfessionApplicationclass : Application() {
+class ConfessionApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         // Start Koin
         startKoin {
             androidLogger()
-            androidContext(this@ConfessionApplicationclass)
+            androidContext(this@ConfessionApplication)
         }
 
         loadKoinModules(listOf(navigationModule))

@@ -32,19 +32,34 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
-
 dependencies {
+    api(LibraryDependency.ANDROID_LEGACY_SUPPORT)
+    api(LibraryDependency.LIFECYCLE_EXTENSIONS)
+    api(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
+
     api(LibraryDependency.TIMBER)
     api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
     api(LibraryDependency.NAVIGATION_UI_KTX)
+
+    api(LibraryDependency.RECYCLER_VIEW)
+    api(LibraryDependency.MATERIAL)
+    api(LibraryDependency.FRAGMENT_KTX)
+
+    api(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
+
     api(LibraryDependency.KOIN_ANDROID)
     api(LibraryDependency.KOIN_ANDROID_EXTENSION)
     api(LibraryDependency.KOIN_ANDROID_SCOPE)
-    api(LibraryDependency.RETROFIT)
-    api(LibraryDependency.GSON_CONVERTER)
+    api(LibraryDependency.KOIN_ANDROID_VIEWMODEL)
+
+    implementation(project(":common"))
 
     addTestDependencies()
 }

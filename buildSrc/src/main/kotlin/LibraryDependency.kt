@@ -78,4 +78,5 @@ object LibraryDependency {
     const val ROOM_KTX = "androidx.room:room-ktx:${LibraryVersion.ROOM}"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
+    const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
 }
