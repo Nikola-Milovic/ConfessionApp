@@ -1,9 +1,13 @@
+val kotlin_version: String by extra
 plugins {
     id(GradlePluginId.ANDROID_APPLICATION)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
     id(GradlePluginId.SAFE_ARGS)
     id("kotlin-android")
+}
+apply {
+    plugin("kotlin-android")
 }
 
 android {
@@ -68,4 +72,7 @@ dependencies {
     implementation(LibraryDependency.EASY_PERMISSION)
 
     addTestDependencies()
+}
+repositories {
+    mavenCentral()
 }

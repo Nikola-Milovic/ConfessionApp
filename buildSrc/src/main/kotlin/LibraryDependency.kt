@@ -27,14 +27,12 @@ private object LibraryVersion {
 
 object LibraryDependency {
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${CoreVersion.KOTLIN}"
-    // Required by Android dynamic feature modules and SafeArgs
-    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${CoreVersion.KOTLIN}"
-    const val KOTLIN_STD = "org.jetbrains.kotlin:kotlin-stdlib:${CoreVersion.KOTLIN}"
 
     const val TIMBER = "com.jakewharton.timber:timber:${LibraryVersion.TIMBER}"
     const val PLAY_CORE = "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
     const val COROUTINES_ANDROID =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoreVersion.COROUTINES_ANDROID}"
+    const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${CoreVersion.COROUTINES_ANDROID}"
     const val CORE_KTX = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
 
     //UI
@@ -45,10 +43,6 @@ object LibraryDependency {
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
     const val FLOATING_ACTION_BUTTON = "com.getbase:floatingactionbutton:${LibraryVersion.FLOATING_ACTION_BUTTON}"
-
-    //Glide
-    const val GLIDE = "com.github.bumptech.glide:glide:${LibraryVersion.GLIDE}"
-    const val GLIDE_AP = "com.github.bumptech.glide:compiler:${LibraryVersion.GLIDE}"
 
     //LifeCycle
     const val LIFECYCLE_EXTENSIONS =
