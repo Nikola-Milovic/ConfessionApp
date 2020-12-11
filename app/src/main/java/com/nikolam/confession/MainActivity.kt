@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.nikolam.common.navigation.NavManager
 import com.nikolam.confession.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
@@ -31,10 +32,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-//        val folderManager: FolderManager = get()
-//
-//        supportActionBar?.hide()
 
         // The window will not be resized when virtual keyboard is shown (bottom navigation bar will be
         // hidden under virtual keyboard)

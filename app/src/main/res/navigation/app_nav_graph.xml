@@ -3,9 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation_graph"
-    app:startDestination="@id/newConfessionFragment">
+    app:startDestination="@id/feedFragment">
+
+
     <fragment
         android:id="@+id/newConfessionFragment"
         android:name="com.nikolam.feature_newconfession.presentation.NewConfessionFragment"
-        android:label="NewConfessionFragment" />
+        android:label="NewConfessionFragment">
+    <deepLink app:uri="confession://NewConfession" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.nikolam.feature_feed.presentation.FeedFragment"
+        android:label="FeedFragment" />
+
 </navigation>
