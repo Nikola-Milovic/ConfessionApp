@@ -52,7 +52,7 @@ class NewConfessionFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        loadKoinModules(listOf(networkingModule, newConfessionModule))
+        loadKoinModules(listOf(newConfessionModule))
     }
 
     override fun onDestroyView() {

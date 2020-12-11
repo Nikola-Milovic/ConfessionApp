@@ -1,11 +1,7 @@
-val kotlin_version: String by extra
 plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
-}
-apply {
-    plugin("kotlin-android")
 }
 
 android {
@@ -51,7 +47,4 @@ dependencies {
     api(LibraryDependency.GSON_CONVERTER)
 
     addTestDependencies()
-}
-repositories {
-    mavenCentral()
 }

@@ -2,6 +2,7 @@ package com.nikolam.confession
 
 import android.app.Application
 import com.nikolam.audiobookmate.di.navigationModule
+import com.nikolam.common.di.networkingModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
@@ -17,7 +18,7 @@ class ConfessionApplication: Application() {
             androidContext(this@ConfessionApplication)
         }
 
-        loadKoinModules(listOf(navigationModule))
+        loadKoinModules(listOf(navigationModule, networkingModule))
         // This will initialise Timber
         // This will initialise Timber
         if (BuildConfig.DEBUG) {
