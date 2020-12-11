@@ -38,7 +38,7 @@ internal class FeedViewModel(val navManager: NavManager) :
 
     internal sealed class Action : BaseAction {
         object ConfessionsLoading : Action()
-        object ConfessionsLoadingSuccess : Action()
+        class ConfessionsLoadingSuccess(confessions : List<String>) : Action()
         object ConfessionsLoadingFailure : Action()
     }
 }
