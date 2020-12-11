@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nikolam.feature_feed.R
 import com.nikolam.feature_feed.databinding.FeedFragmentBinding
@@ -25,9 +28,13 @@ class FeedFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-//    private val stateObserver = Observer<NewConfessionViewModel.ViewState> {
-//
-//    }
+    private lateinit var adapter : FeedAdapter
+
+    private val stateObserver = Observer<FeedViewModel.ViewState> {
+        if(it.isSuccess){
+            adapter.newData(it.confessions)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FeedFragmentBinding.inflate(inflater, container, false)
@@ -45,12 +52,26 @@ class FeedFragment : Fragment() {
             }
         }
 
-        //viewModel.stateLiveData.observe(viewLifecycleOwner ,stateObserver)
+        adapter = FeedAdapter()
+
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.feedRecyclerView.addItemDecoration(
+                DividerItemDecoration(
+                        requireContext(),
+                        DividerItemDecoration.VERTICAL
+                )
+        )
+
+        binding.feedRecyclerView.adapter = adapter
+
+
+        viewModel.stateLiveData.observe(viewLifecycleOwner ,stateObserver)
         return view
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         loadKoinModules(feedModule)
+        viewModel.getConfessions("")
     }
 
     override fun onDestroyView() {

@@ -1,28 +1,49 @@
 package com.nikolam.feature_feed.presentation
 
 import android.net.Uri
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nikolam.common.navigation.NavManager
 import com.nikolam.common.navigation.NewConfessionUri
 import com.nikolam.common.viewmodel.BaseAction
 import com.nikolam.common.viewmodel.BaseViewModel
 import com.nikolam.common.viewmodel.BaseViewState
+import com.nikolam.feature_feed.domain.ConfessionDomainModel
+import com.nikolam.feature_feed.domain.GetConfessionsUseCase
 import kotlinx.coroutines.launch
 
-internal class FeedViewModel(val navManager: NavManager) :
-    BaseViewModel<FeedViewModel.ViewState, FeedViewModel.Action>(ViewState()) {
+internal class FeedViewModel(private val navManager: NavManager, private val getConfessionsUseCase: GetConfessionsUseCase) :
+        BaseViewModel<FeedViewModel.ViewState, FeedViewModel.Action>(ViewState()) {
 
     override fun onReduceState(viewAction: Action) = when (viewAction) {
-        else ->  state
+        is Action.ConfessionsLoadingFailure -> state.copy(
+                isError = true,
+                isSuccess = false,
+                isLoading = false
+        )
+        is Action.ConfessionsLoadingSuccess -> state.copy(
+                isSuccess = true,
+                isLoading = false,
+                isError = false,
+                confessions = viewAction.confessions
+        )
+        is Action.ConfessionsLoading -> state.copy(
+                isSuccess = false,
+                isLoading = true,
+                isError = false
+        )
     }
 
-    fun getConfessions(sortBy : String) {
+    fun getConfessions(sortBy: String) {
         sendAction(Action.ConfessionsLoading)
         viewModelScope.launch {
-
+            getConfessionsUseCase.execute().also { result ->
+                when (result) {
+                    is GetConfessionsUseCase.Result.Success -> sendAction(Action.ConfessionsLoadingSuccess(result.confessions))
+                    is GetConfessionsUseCase.Result.Error -> sendAction(Action.ConfessionsLoadingFailure)
+                }
             }
         }
+    }
 
     fun navigateToNewConfession() {
         val uri = Uri.parse(NewConfessionUri)
@@ -30,15 +51,15 @@ internal class FeedViewModel(val navManager: NavManager) :
     }
 
     internal data class ViewState(
-        val isSuccess: Boolean = false,
-        val isLoading: Boolean = false,
-        val isError: Boolean = false,
-        val confessions : List<String> = listOf()
+            val isSuccess: Boolean = false,
+            val isLoading: Boolean = false,
+            val isError: Boolean = false,
+            val confessions: List<ConfessionDomainModel> = listOf()
     ) : BaseViewState
 
     internal sealed class Action : BaseAction {
         object ConfessionsLoading : Action()
-        class ConfessionsLoadingSuccess(confessions : List<String>) : Action()
+        class ConfessionsLoadingSuccess(val confessions: List<ConfessionDomainModel>) : Action()
         object ConfessionsLoadingFailure : Action()
     }
 }
