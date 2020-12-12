@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,7 +22,11 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import timber.log.Timber
 
-class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener{
+class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemSelectedListener{
+
+    val sortByArray = listOf("newest", "oldest","popular", "mostliked")
+
+    private var sortBy = "newest"
 
     private val viewModel: FeedViewModel by inject()
 
@@ -58,7 +63,7 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener{
             }
         }
 
-        adapter = FeedAdapter()
+        adapter = FeedAdapter(this)
 
         binding.swipeRefresh.setOnRefreshListener(this)
 
@@ -91,5 +96,14 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener{
     override fun onRefresh() {
         viewModel.getConfessions("")
         Timber.d("Refresh")
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        sortBy = sortByArray[position]
+        Timber.d(sortBy)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        //
     }
 }
