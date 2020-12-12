@@ -24,7 +24,7 @@ import timber.log.Timber
 
 class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemSelectedListener{
 
-    val sortByArray = listOf("newest", "oldest","popular", "mostliked")
+    val sortByArray = listOf("newest", "oldest", "mostliked")
 
     private var sortBy = "newest"
 
@@ -84,7 +84,7 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, AdapterVi
     override fun onAttach(context: Context) {
         super.onAttach(context)
         loadKoinModules(feedModule)
-        viewModel.getConfessions("")
+        viewModel.getConfessions(sortBy)
     }
 
     override fun onDestroyView() {
@@ -94,13 +94,15 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, AdapterVi
     }
 
     override fun onRefresh() {
-        viewModel.getConfessions("")
-        Timber.d("Refresh")
+        viewModel.getConfessions(sortBy)
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        sortBy = sortByArray[position]
-        Timber.d(sortBy)
+        if(sortByArray[position] != sortBy){
+            sortBy = sortByArray[position]
+            viewModel.getConfessions(sortBy)
+        }
+        adapter.setSortBy(position)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

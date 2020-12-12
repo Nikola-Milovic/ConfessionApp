@@ -6,8 +6,9 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ConfessionFeedService {
     @GET("$BaseAPIUrl/")
-    fun getConfessions(): Call<ArrayList<ConfessionDataModel>>
+    fun getConfessions(@Query("sort") sortBy : String): Call<ArrayList<ConfessionDataModel>>
 }

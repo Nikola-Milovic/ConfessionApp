@@ -3,7 +3,6 @@
     <string-array name="sort_by_list">
         <item>Newest</item>
         <item>Oldest</item>
-        <item>Popular</item>
         <item>Most Liked</item>
     </string-array>
 </resources>

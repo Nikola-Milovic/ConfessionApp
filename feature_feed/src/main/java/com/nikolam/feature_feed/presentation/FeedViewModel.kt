@@ -36,7 +36,7 @@ internal class FeedViewModel(private val navManager: NavManager, private val get
     fun getConfessions(sortBy: String) {
         sendAction(Action.ConfessionsLoading)
         viewModelScope.launch {
-            getConfessionsUseCase.execute().also { result ->
+            getConfessionsUseCase.execute(sortBy).also { result ->
                 when (result) {
                     is GetConfessionsUseCase.Result.Success -> {
                         result.confessions.add(0, ConfessionDomainModel(0,0,"","",""))

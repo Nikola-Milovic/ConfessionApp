@@ -11,9 +11,9 @@ class GetConfessionsUseCase(
         data class Error(val e: Throwable?) : Result()
     }
 
-    suspend fun execute(): Result {
+    suspend fun execute(sortBy: String): Result {
         try {
-            val response = confessionRepository.getConfessions()
+            val response = confessionRepository.getConfessions(sortBy)
             Timber.d("response is $response")
             if (response.isEmpty()) {
                 return Result.Error(null)

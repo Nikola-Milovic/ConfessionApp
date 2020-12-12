@@ -14,6 +14,12 @@ import timber.log.Timber
 class FeedAdapter(private val listener: AdapterView.OnItemSelectedListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var sortByIndex = 0
+
+    fun setSortBy(sortBy : Int){
+        sortByIndex = sortBy
+    }
+
     override fun getItemViewType(position: Int): Int {
         if (position == 0) {
             return 0 // sort by
@@ -98,6 +104,7 @@ class FeedAdapter(private val listener: AdapterView.OnItemSelectedListener) :
                     itemBinding.sortBySpinner.adapter = adapter
                 }
                 itemBinding.sortBySpinner.onItemSelectedListener = listener
+                sortBySpinner.setSelection(sortByIndex)
             }
         }
     }

@@ -17,9 +17,10 @@ class ConfessionRepositoryImpl (private val confessionFeedService: ConfessionFee
     ConfessionRepository {
 
     @ExperimentalCoroutinesApi
-    override suspend fun getConfessions(): ArrayList<ConfessionDomainModel> =
+    override suspend fun getConfessions(sortBy : String): ArrayList<ConfessionDomainModel> =
         suspendCoroutine { cont ->
-            val call = confessionFeedService.getConfessions()
+            Timber.d("sort by in repo is $sortBy")
+            val call = confessionFeedService.getConfessions(sortBy)
             Timber.i("Call enqueued")
             call.enqueue(object : Callback<ArrayList<ConfessionDataModel>> {
                 override fun onResponse(
