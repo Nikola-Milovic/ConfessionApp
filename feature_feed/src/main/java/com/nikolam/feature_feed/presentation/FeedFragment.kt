@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nikolam.feature_feed.R
 import com.nikolam.feature_feed.databinding.FeedFragmentBinding
@@ -20,7 +21,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import timber.log.Timber
 
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener{
 
     private val viewModel: FeedViewModel by inject()
 
@@ -33,6 +34,11 @@ class FeedFragment : Fragment() {
     private val stateObserver = Observer<FeedViewModel.ViewState> {
         if(it.isSuccess){
             adapter.newData(it.confessions)
+            binding.swipeRefresh.isRefreshing = false
+        } else if(it.isLoading){
+            binding.swipeRefresh.isRefreshing = true
+        } else if (it.isError){
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 
@@ -53,6 +59,8 @@ class FeedFragment : Fragment() {
         }
 
         adapter = FeedAdapter()
+
+        binding.swipeRefresh.setOnRefreshListener(this)
 
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.feedRecyclerView.addItemDecoration(
@@ -78,5 +86,10 @@ class FeedFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         unloadKoinModules(feedModule)
+    }
+
+    override fun onRefresh() {
+        viewModel.getConfessions("")
+        Timber.d("Refresh")
     }
 }

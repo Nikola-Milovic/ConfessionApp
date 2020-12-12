@@ -63,6 +63,8 @@ dependencies {
     api(LibraryDependency.COROUTINES_ANDROID)
     api(LibraryDependency.COROUTINES_CORE)
 
+    implementation(LibraryDependency.SWIPE_REFRESH_LAYOUT)
+
     implementation(project(":common"))
 
     addTestDependencies()

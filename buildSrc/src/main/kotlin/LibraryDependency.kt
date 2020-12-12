@@ -23,6 +23,7 @@ private object LibraryVersion {
     const val FLOATING_ACTION_BUTTON = "1.10.1"
     const val ROOM = "2.2.5"
     const val RETROFIT = "2.9.0"
+    const val SWIPE_REFRESH_LAYOUT  = "1.1.0"
 }
 
 object LibraryDependency {
@@ -73,4 +74,6 @@ object LibraryDependency {
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
+
+    const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH_LAYOUT}"
 }
