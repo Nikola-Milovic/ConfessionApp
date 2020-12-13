@@ -6,5 +6,6 @@ include(
         ":library_test_utils",
         ":common",
         ":feature_newConfession",
-        ":feature_feed"
+        ":feature_feed",
+        ":feature_confession"
 )

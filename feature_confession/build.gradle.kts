@@ -1,16 +1,13 @@
 plugins {
-    id(GradlePluginId.ANDROID_APPLICATION)
+    id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_KAPT)
-    id(GradlePluginId.SAFE_ARGS)
-    id("kotlin-android")
 }
 
 android {
     compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId = AndroidConfig.ID
         minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
         buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
@@ -62,12 +59,10 @@ dependencies {
     api(LibraryDependency.KOIN_ANDROID_SCOPE)
     api(LibraryDependency.KOIN_ANDROID_VIEWMODEL)
 
-    implementation(project(":common"))
-    implementation(project(":feature_newConfession"))
-    implementation(project(":feature_feed"))
-    implementation(project(":feature_confession"))
+    api(LibraryDependency.COROUTINES_ANDROID)
+    api(LibraryDependency.COROUTINES_CORE)
 
-    implementation(LibraryDependency.EASY_PERMISSION)
+    implementation(project(":common"))
 
     addTestDependencies()
 }
