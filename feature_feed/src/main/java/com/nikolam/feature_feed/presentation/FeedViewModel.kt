@@ -2,6 +2,7 @@ package com.nikolam.feature_feed.presentation
 
 import android.net.Uri
 import androidx.lifecycle.viewModelScope
+import com.nikolam.common.navigation.ConfessionDetailUri
 import com.nikolam.common.navigation.NavManager
 import com.nikolam.common.navigation.NewConfessionUri
 import com.nikolam.common.viewmodel.BaseAction
@@ -50,6 +51,11 @@ internal class FeedViewModel(private val navManager: NavManager, private val get
 
     fun navigateToNewConfession() {
         val uri = Uri.parse(NewConfessionUri)
+        navManager.navigate(uri)
+    }
+
+    fun navigateToConfessionDetailScreen(id : String) {
+        val uri = Uri.parse("$ConfessionDetailUri/?id=$id")
         navManager.navigate(uri)
     }
 

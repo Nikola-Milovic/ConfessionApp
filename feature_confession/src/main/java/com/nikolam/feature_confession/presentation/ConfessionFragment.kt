@@ -12,6 +12,7 @@ import com.nikolam.feature_confession.di.confessionModule
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
+import timber.log.Timber
 
 class ConfessionFragment : Fragment() {
 
@@ -22,12 +23,21 @@ class ConfessionFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val stateObserver = Observer<ConfessionViewModel.ViewState> {
-
+        if(it.isSuccess){
+            binding.textTextView.text = it.confession?.text
+            binding.likeAmountTextView.text = it.confession?.likes.toString()
+            binding.dislikeAmountTextView.text = it.confession?.dislikes.toString()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = ConfessionFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        arguments?.let {
+            val id = it.getString("id")
+            viewModel.getConfession(id ?: "")
+        }
 
         viewModel.stateLiveData.observe(viewLifecycleOwner ,stateObserver)
         return view

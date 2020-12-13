@@ -11,12 +11,15 @@ import com.nikolam.feature_feed.databinding.SortByItemBinding
 import com.nikolam.feature_feed.domain.ConfessionDomainModel
 import timber.log.Timber
 
-class FeedAdapter(private val listener: AdapterView.OnItemSelectedListener) :
+class FeedAdapter(
+    private val listener: AdapterView.OnItemSelectedListener,
+    private val clickListener: ConfessionClickListener
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var sortByIndex = 0
 
-    fun setSortBy(sortBy : Int){
+    fun setSortBy(sortBy: Int) {
         sortByIndex = sortBy
     }
 
@@ -79,6 +82,9 @@ class FeedAdapter(private val listener: AdapterView.OnItemSelectedListener) :
 
         fun bind(data: ConfessionDomainModel) {
             itemBinding.apply {
+                confessionItemCardView.setOnClickListener{
+                    clickListener.onClick(data.id)
+                }
                 likeAmountTextView.text = data.likes.toString()
                 dislikeAmountTextView.text = data.dislikes.toString()
                 textPreviewTextView.text = data.text

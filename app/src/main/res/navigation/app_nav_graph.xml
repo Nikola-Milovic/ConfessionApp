@@ -17,5 +17,14 @@
         android:id="@+id/feedFragment"
         android:name="com.nikolam.feature_feed.presentation.FeedFragment"
         android:label="FeedFragment" />
+    <fragment
+        android:id="@+id/confessionFragment"
+        android:name="com.nikolam.feature_confession.presentation.ConfessionFragment"
+        android:label="ConfessionFragment">
+        <deepLink
+            app:uri="confession://Confession/?id={id}" />
+
+        <argument android:name="id" app:argType="string"/>
+    </fragment>
 
 </navigation>
