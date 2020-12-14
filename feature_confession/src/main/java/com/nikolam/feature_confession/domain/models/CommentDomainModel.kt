@@ -1,6 +1,6 @@
-package com.nikolam.feature_confession.domain
+package com.nikolam.feature_confession.domain.models
 
-data class ConfessionDomainModel(
+data class CommentDomainModel(
     val likes: Int,
     val dislikes: Int,
     val id: String,

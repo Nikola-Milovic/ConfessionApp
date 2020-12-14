@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikolam.feature_confession.databinding.ConfessionFragmentBinding
 import com.nikolam.feature_confession.di.confessionModule
 import org.koin.android.ext.android.inject
@@ -22,11 +24,19 @@ class ConfessionFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private lateinit var commentAdapter : CommentAdapter
+
     private val stateObserver = Observer<ConfessionViewModel.ViewState> {
         if(it.isSuccess){
             binding.textTextView.text = it.confession?.text
             binding.likeAmountTextView.text = it.confession?.likes.toString()
             binding.dislikeAmountTextView.text = it.confession?.dislikes.toString()
+        }
+        if(it.comments.isNotEmpty()){
+            commentAdapter.newData(it.comments)
+            Timber.i(it.comments.toString())
+        } else {
+
         }
     }
 
@@ -38,6 +48,19 @@ class ConfessionFragment : Fragment() {
             val id = it.getString("id")
             viewModel.getConfession(id ?: "")
         }
+
+        commentAdapter = CommentAdapter()
+
+        binding.commentsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.commentsRecyclerView.addItemDecoration(
+                DividerItemDecoration(
+                        requireContext(),
+                        DividerItemDecoration.VERTICAL
+                )
+        )
+
+        binding.commentsRecyclerView.adapter = commentAdapter
+
 
         viewModel.stateLiveData.observe(viewLifecycleOwner ,stateObserver)
         return view

@@ -1,12 +1,17 @@
-package com.nikolam.feature_feed.data
+package com.nikolam.feature_confession.data
 
-import com.nikolam.common.BaseAPIUrl
+import com.nikolam.common.BaseCommentsAPIUrl
+import com.nikolam.common.BaseConfessionAPIUrl
+import com.nikolam.feature_confession.data.model.CommentDataModel
 import com.nikolam.feature_confession.data.model.ConfessionDataModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ConfessionDetailService {
-    @GET("$BaseAPIUrl/conf/")
+    @GET("$BaseConfessionAPIUrl/conf/")
     fun getConfession(@Query("id") id : String): Call<ConfessionDataModel>
+
+    @GET("$BaseCommentsAPIUrl/")
+    fun getComments(@Query("id") id : String): Call<ArrayList<CommentDataModel>>
 }
