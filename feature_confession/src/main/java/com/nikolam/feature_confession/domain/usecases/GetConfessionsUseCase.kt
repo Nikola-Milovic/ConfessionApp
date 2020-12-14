@@ -1,5 +1,6 @@
-package com.nikolam.feature_confession.domain
+package com.nikolam.feature_confession.domain.usecases
 
+import com.nikolam.feature_confession.domain.ConfessionRepository
 import com.nikolam.feature_confession.domain.models.ConfessionDomainModel
 import timber.log.Timber
 

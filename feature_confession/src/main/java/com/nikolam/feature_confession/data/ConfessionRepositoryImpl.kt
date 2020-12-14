@@ -1,10 +1,12 @@
 package com.nikolam.feature_confession.data
 
+import com.nikolam.feature_confession.data.model.CommentBody
 import com.nikolam.feature_confession.data.model.CommentDataModel
 import com.nikolam.feature_confession.data.model.ConfessionDataModel
 import com.nikolam.feature_confession.data.model.toDomainModel
 import com.nikolam.feature_confession.domain.models.ConfessionDomainModel
 import com.nikolam.feature_confession.domain.ConfessionRepository
+import com.nikolam.feature_confession.domain.ResponseCode
 import com.nikolam.feature_confession.domain.models.CommentDomainModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import retrofit2.Call
@@ -21,7 +23,6 @@ class ConfessionRepositoryImpl (private val confessionDetailService: ConfessionD
     @ExperimentalCoroutinesApi
     override suspend fun getConfession(id : String): ConfessionDomainModel = suspendCoroutine { cont ->
             val call = confessionDetailService.getConfession(id)
-            Timber.i("Call enqueued")
             call.enqueue(object : Callback<ConfessionDataModel> {
                 override fun onResponse(
                         call: Call<ConfessionDataModel>,
@@ -43,7 +44,6 @@ class ConfessionRepositoryImpl (private val confessionDetailService: ConfessionD
 
     override suspend fun getComments(id: String): ArrayList<CommentDomainModel> = suspendCoroutine { cont ->
         val call = confessionDetailService.getComments(id)
-        Timber.i("Call enqueued")
         call.enqueue(object : Callback<ArrayList<CommentDataModel>> {
             override fun onResponse(
                     call: Call<ArrayList<CommentDataModel>>,
@@ -58,6 +58,24 @@ class ConfessionRepositoryImpl (private val confessionDetailService: ConfessionD
             }
 
             override fun onFailure(call: Call<ArrayList<CommentDataModel>>, t: Throwable) {
+                cont.resumeWithException(t)
+            }
+
+        })
+    }
+
+    override suspend fun postComment(text: String, id: String): ResponseCode  = suspendCoroutine { cont ->
+        val call = confessionDetailService.postComment(id = id, text = CommentBody(text))
+        Timber.i("$text and id is $id")
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+            ) {
+                cont.resume(response.code())
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 cont.resumeWithException(t)
             }
 

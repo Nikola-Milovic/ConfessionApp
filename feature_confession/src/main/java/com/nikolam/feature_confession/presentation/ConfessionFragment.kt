@@ -2,6 +2,7 @@ package com.nikolam.feature_confession.presentation
 
 import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,17 @@ class ConfessionFragment : Fragment() {
             val id = it.getString("id")
             viewModel.getConfession(id ?: "")
         }
+
+        binding.addCommentEditText.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if (event?.action != null && event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    viewModel.postComment(binding.addCommentEditText.text.toString())
+                    return true
+                }
+                return false
+            }
+
+        })
 
         commentAdapter = CommentAdapter()
 
