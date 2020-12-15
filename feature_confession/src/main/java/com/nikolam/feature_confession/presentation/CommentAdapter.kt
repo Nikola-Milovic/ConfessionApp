@@ -44,8 +44,6 @@ class CommentAdapter() :
 
         fun bind(data: CommentDomainModel) {
             itemBinding.apply {
-                likeAmountTextView.text = data.likes.toString()
-                dislikeAmountTextView.text = data.dislikes.toString()
                 commentTextTextView.text = data.text
             }
         }

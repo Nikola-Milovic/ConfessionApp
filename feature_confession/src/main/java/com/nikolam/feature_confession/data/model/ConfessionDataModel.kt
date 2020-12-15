@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.nikolam.feature_confession.domain.models.ConfessionDomainModel
 
 data class ConfessionDataModel(
-        @SerializedName("likes") val likes: Int,
-        @SerializedName("dislikes") val dislikes: Int,
+        @SerializedName("comments") val comments: Int,
         @SerializedName("_id") val _id: String,
         @SerializedName("text") val text: String,
         @SerializedName("date") val date: String,
@@ -15,8 +14,7 @@ data class ConfessionDataModel(
 
 fun ConfessionDataModel.toDomainModel(): ConfessionDomainModel {
     return ConfessionDomainModel(
-            likes = likes,
-            dislikes = dislikes,
+            comments = comments,
             id = _id,
             text = text,
             date = ""

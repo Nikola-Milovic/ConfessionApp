@@ -14,8 +14,7 @@ import kotlinx.coroutines.launch
 internal class ConfessionViewModel(private val getConfessionsUseCase: GetConfessionsUseCase,
                                    private val getCommentsUseCase: GetCommentsUseCase,
                                    private val postCommentUseCase: PostCommentUseCase
-) :
-        BaseViewModel<ConfessionViewModel.ViewState, ConfessionViewModel.Action>(ViewState()) {
+) : BaseViewModel<ConfessionViewModel.ViewState, ConfessionViewModel.Action>(ViewState()) {
 
     override fun onReduceState(viewAction: Action) = when (viewAction) {
         is Action.ConfessionLoadingSuccess -> state.copy(
@@ -38,7 +37,7 @@ internal class ConfessionViewModel(private val getConfessionsUseCase: GetConfess
             postCommentUseCase.execute(text, state.confession!!.id).let {
                 when (it) {
                     is PostCommentUseCase.Result.Success -> {
-                        state.comments.add(CommentDomainModel(0, 0, "", text, "Just now"))
+                        state.comments.add(CommentDomainModel("",text, "Just now"))
                         sendAction(Action.ConfessionLoadingSuccess(null, comments = state.comments))
                     }
                 }
@@ -64,7 +63,7 @@ internal class ConfessionViewModel(private val getConfessionsUseCase: GetConfess
         getCommentsUseCase.execute(id).let { commentResult ->
             when (commentResult) {
                 is GetCommentsUseCase.Result.Success -> sendAction(Action.ConfessionLoadingSuccess(null, comments = commentResult.comments))
-                is GetCommentsUseCase.Result.Error ->sendAction(Action.ConfessionLoadingSuccess(null, comments = arrayListOf()))
+                is GetCommentsUseCase.Result.Error -> sendAction(Action.ConfessionLoadingSuccess(null, comments = arrayListOf()))
             }
         }
     }

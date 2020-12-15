@@ -30,8 +30,6 @@ class ConfessionFragment : Fragment() {
     private val stateObserver = Observer<ConfessionViewModel.ViewState> {
         if(it.isSuccess){
             binding.textTextView.text = it.confession?.text
-            binding.likeAmountTextView.text = it.confession?.likes.toString()
-            binding.dislikeAmountTextView.text = it.confession?.dislikes.toString()
         }
         if(it.comments.isNotEmpty()){
             commentAdapter.newData(it.comments)

@@ -31,7 +31,7 @@ class ConfessionRepositoryImpl (private val confessionDetailService: ConfessionD
                     if(response.isSuccessful){
                         cont.resume(response.body()!!.toDomainModel())
                     } else {
-                        cont.resume(ConfessionDomainModel(0,0,"","",""))
+                        cont.resume(ConfessionDomainModel(0,"","",""))
                     }
                 }
 
