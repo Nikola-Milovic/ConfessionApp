@@ -1,13 +1,19 @@
 package com.nikolam.feature_newconfession.presentation
 
+import android.net.Uri
 import androidx.lifecycle.viewModelScope
+import com.nikolam.common.navigation.ConfessionDetailUri
+import com.nikolam.common.navigation.NavManager
 import com.nikolam.common.viewmodel.BaseAction
 import com.nikolam.common.viewmodel.BaseViewModel
 import com.nikolam.common.viewmodel.BaseViewState
 import com.nikolam.feature_newconfession.domain.usecases.SaveConfessionUseCase
 import kotlinx.coroutines.launch
 
-internal class NewConfessionViewModel(private val saveConfessionUseCase: SaveConfessionUseCase) :
+internal class NewConfessionViewModel(
+    private val saveConfessionUseCase: SaveConfessionUseCase,
+    private val navManager: NavManager
+) :
     BaseViewModel<NewConfessionViewModel.ViewState, NewConfessionViewModel.Action>(ViewState()) {
 
     override fun onReduceState(viewAction: Action) = when (viewAction) {
@@ -35,7 +41,7 @@ internal class NewConfessionViewModel(private val saveConfessionUseCase: SaveCon
             saveConfessionUseCase.execute(text).also { result ->
                 val action = when (result) {
                     is SaveConfessionUseCase.Result.Success ->
-                        Action.ConfessionSavingSuccess(result.data)
+                        Action.ConfessionSavingSuccess(result.id)
                     is SaveConfessionUseCase.Result.Error ->
                         Action.ConfessionSavingFailure
                 }
@@ -43,6 +49,12 @@ internal class NewConfessionViewModel(private val saveConfessionUseCase: SaveCon
             }
         }
     }
+
+    fun navigateToConfessionDetailScreen(id: String) {
+        val uri = Uri.parse("$ConfessionDetailUri/?id=$id")
+        navManager.navigate(uri)
+    }
+
 
     internal data class ViewState(
         val isSuccess: Boolean = false,

@@ -69,6 +69,10 @@ class ConfessionFragment : Fragment() {
                 )
         )
 
+        binding.goBackButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStackImmediate()
+        }
+
         binding.commentsRecyclerView.adapter = commentAdapter
 
 

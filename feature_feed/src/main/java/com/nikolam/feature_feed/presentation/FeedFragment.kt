@@ -17,6 +17,7 @@ import com.nikolam.feature_feed.di.feedModule
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
+import timber.log.Timber
 
 class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
     AdapterView.OnItemSelectedListener, ConfessionClickListener {
@@ -90,6 +91,11 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
     override fun onAttach(context: Context) {
         super.onAttach(context)
         loadKoinModules(feedModule)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        activity?.actionBar?.show()
     }
 
     override fun onDestroyView() {

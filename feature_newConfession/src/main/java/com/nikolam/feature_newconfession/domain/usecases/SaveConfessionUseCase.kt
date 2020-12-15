@@ -12,7 +12,7 @@ internal class SaveConfessionUseCase(
 ) {
 
     sealed class Result {
-        data class Success(val data: String, val status: Int) : Result()
+        data class Success(val id: String, val status: Int) : Result()
         data class Error(val e: Throwable?) : Result()
     }
 

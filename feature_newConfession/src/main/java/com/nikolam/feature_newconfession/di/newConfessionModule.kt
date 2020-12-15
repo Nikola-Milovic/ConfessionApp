@@ -11,7 +11,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 internal val newConfessionModule = module {
-    viewModel { NewConfessionViewModel(get()) }
+    viewModel { NewConfessionViewModel(get(), get()) }
     single { provideNewConfessionService(get()) }
     single<ConfessionRepository> { ConfessionRepositoryImpl(get()) }
     single { SaveConfessionUseCase(get()) }

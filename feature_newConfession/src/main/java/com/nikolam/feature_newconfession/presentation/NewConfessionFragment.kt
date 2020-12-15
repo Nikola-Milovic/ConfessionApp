@@ -29,7 +29,8 @@ class NewConfessionFragment : Fragment() {
             Toast.makeText(requireContext(), "Error saving the confession, please try again later", Toast.LENGTH_SHORT).show()
         } else if(it.isSuccess){
             binding.progressBar.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "Successfully saved the confession! ${it.id}", Toast.LENGTH_SHORT).show()
+            activity?.supportFragmentManager?.popBackStackImmediate()
+            viewModel.navigateToConfessionDetailScreen(it.id)
         } else if(it.isLoading){
             binding.progressBar.visibility = View.VISIBLE
         }
@@ -38,6 +39,10 @@ class NewConfessionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = NewConfessionFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.goBackButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStackImmediate()
+        }
 
         binding.confessButton.setOnClickListener {
             viewModel.saveConfession(binding.confessionTextEditText.text.toString())
