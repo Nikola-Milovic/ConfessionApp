@@ -85,6 +85,7 @@ class FeedAdapter(
                 confessionItemCardView.setOnClickListener{
                     clickListener.onClick(data.id)
                 }
+                commentAmountTextView.text = data.comments.toString()
                 textPreviewTextView.text = data.text
             }
         }

@@ -49,7 +49,7 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FeedFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -81,13 +81,15 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
 
 
         viewModel.stateLiveData.observe(viewLifecycleOwner, stateObserver)
+
+        viewModel.getConfessions(sortBy)
+
         return view
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         loadKoinModules(feedModule)
-        viewModel.getConfessions(sortBy)
     }
 
     override fun onDestroyView() {
