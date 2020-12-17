@@ -19,7 +19,6 @@ class CommentAdapter() :
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentAdapter.CommentViewHolder {
         val itemBinding =
                 CommentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

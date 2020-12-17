@@ -6,7 +6,6 @@ import com.nikolam.feature_confession.domain.usecases.GetConfessionsUseCase
 import com.nikolam.feature_confession.presentation.ConfessionViewModel
 import com.nikolam.feature_confession.data.ConfessionDetailService
 import com.nikolam.feature_confession.domain.usecases.GetCommentsUseCase
-import com.nikolam.feature_confession.domain.usecases.PostCommentUseCase
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,7 +16,6 @@ val confessionModule = module {
     single<ConfessionRepository> { ConfessionRepositoryImpl(get()) }
     single { GetConfessionsUseCase(get()) }
     single { GetCommentsUseCase(get()) }
-    single { PostCommentUseCase(get()) }
 }
 
 fun provideConfessionDetailService(retrofit: Retrofit): ConfessionDetailService {

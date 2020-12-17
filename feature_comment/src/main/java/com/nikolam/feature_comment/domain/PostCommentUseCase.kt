@@ -1,6 +1,5 @@
-package com.nikolam.feature_confession.domain.usecases
+package com.nikolam.feature_comment.domain
 
-import com.nikolam.feature_confession.domain.ConfessionRepository
 import timber.log.Timber
 
 class PostCommentUseCase(

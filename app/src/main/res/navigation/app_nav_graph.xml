@@ -27,4 +27,12 @@
         <argument android:name="id" app:argType="string"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/addComment"
+        android:name="com.nikolam.feature_comment.presentation.AddCommentFragment"
+        android:label="AddComment">
+        <deepLink app:uri="confession://AddComment/?id={id}" />
+        <argument android:name="id" app:argType="string"/>
+    </fragment>
+
 </navigation>

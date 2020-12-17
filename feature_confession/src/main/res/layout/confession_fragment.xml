@@ -71,11 +71,12 @@
 
     </ScrollView>
 
-    <EditText
-        android:id="@+id/addComment_editText"
+    <TextView
+        android:id="@+id/addComment_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Post a comment"
+        android:hint="Post a comment..."
+        android:background="@drawable/textlines"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -22,7 +22,7 @@ import timber.log.Timber
 class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
     AdapterView.OnItemSelectedListener, ConfessionClickListener {
 
-    val sortByArray = listOf("newest", "oldest", "mostliked")
+    val sortByArray = listOf("newest", "oldest", "mostcommented")
 
     //TODO add shared preference or something so that the sortBy stays consistent
     private var sortBy = "newest"

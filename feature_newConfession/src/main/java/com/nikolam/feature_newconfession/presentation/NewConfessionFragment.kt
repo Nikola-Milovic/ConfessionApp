@@ -61,6 +61,4 @@ class NewConfessionFragment : Fragment() {
         _binding = null
         unloadKoinModules(newConfessionModule)
     }
-
-
 }

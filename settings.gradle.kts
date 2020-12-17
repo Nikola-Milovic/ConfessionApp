@@ -7,5 +7,6 @@ include(
         ":common",
         ":feature_newConfession",
         ":feature_feed",
-        ":feature_confession"
+        ":feature_confession",
+        ":feature_comment"
 )
