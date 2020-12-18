@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -29,14 +28,14 @@
     </LinearLayout>
 
     <ScrollView
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/addComment_editText"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/addComment_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <LinearLayout
@@ -44,22 +43,43 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_textView"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="THis is a sample confessionsadasdasds\n asddadasdsadasdadasdasdasdad\n asdadadasdadsadasdad\n asdsadadadasd"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:cardElevation="3dp"
+                >
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/date_textView"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="THis is a sample confessionsadasdasds\n asddadasdsadasdadasdasdasdad\n asdadadasdadsadasdad\n asdsadadadasd" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:padding="5dp"
+                    android:id="@+id/date_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Posted 6 hours ago"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:padding="5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Posted 6 hours ago"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="Comments"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments_recyclerView"
@@ -75,13 +95,12 @@
         android:id="@+id/addComment_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Post a comment..."
         android:background="@drawable/textlines"
+        android:hint="Post a comment..."
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

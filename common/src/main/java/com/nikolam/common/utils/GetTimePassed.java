@@ -37,6 +37,20 @@ public class GetTimePassed {
         } else if (diff < 48 * HOUR_MILLIS) {
             return "yesterday";
         } else {
+            long days = diff / DAY_MILLIS;
+
+            if (days > 365){
+                int t = (int) Math.floor((diff / DAY_MILLIS)/365);
+                String s = "";
+                if (t == 1) {
+                    s = " year ago";
+                } else {
+                    s = " years ago";
+                }
+
+                return t + s;
+            }
+
             return diff / DAY_MILLIS + " days ago";
         }
     }
