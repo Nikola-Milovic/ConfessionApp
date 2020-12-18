@@ -86,6 +86,7 @@ class FeedAdapter(
                     clickListener.onClick(data.id)
                 }
                 commentAmountTextView.text = data.comments.toString()
+                dateTextView.text = data.date
                 textPreviewTextView.text = data.text
             }
         }

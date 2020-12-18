@@ -44,6 +44,7 @@ class CommentAdapter() :
         fun bind(data: CommentDomainModel) {
             itemBinding.apply {
                 commentTextTextView.text = data.text
+                dateTextView.text = data.date
             }
         }
     }

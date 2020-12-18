@@ -31,6 +31,7 @@ class ConfessionFragment : Fragment() {
     private val stateObserver = Observer<ConfessionViewModel.ViewState> {
         if(it.isSuccess){
             binding.textTextView.text = it.confession?.text
+            binding.dateTextView.text = it.confession?.date
         }
         if(it.comments.isNotEmpty()){
             commentAdapter.newData(it.comments)
