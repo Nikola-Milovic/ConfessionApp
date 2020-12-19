@@ -3,17 +3,17 @@
         android:id="@+id/save_bar_item"
         android:enabled="true"
         android:icon="@drawable/ic_saved"
-        android:title="Save"/>
+        android:title="@string/saved_menu_item"/>
     <item
         android:id="@+id/search_bar_item"
         android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title="Search"/>
+        android:title="@string/search_menu_item"/>
 
     <item
         android:id="@+id/new_bar_item"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="Confess"/>
+        android:title="@string/confess_menu_item"/>
 
 </menu>

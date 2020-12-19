@@ -1,0 +1,4 @@
+<resources>
+    <string name="comment_title">Komentarišete</string>
+    <string name="write_comment_hint">Ovde napišite svoj komentar…</string>
+</resources>

@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 val confessionModule = module {
     viewModel { ConfessionViewModel(get(), get(), get()) }
     single { provideConfessionDetailService(get()) }
-    single<ConfessionRepository> { ConfessionRepositoryImpl(get()) }
+    single<ConfessionRepository> { ConfessionRepositoryImpl(get(), get()) }
     single { GetConfessionsUseCase(get()) }
     single { GetCommentsUseCase(get()) }
 }

@@ -1,5 +1,6 @@
 package com.nikolam.feature_confession.data.model
 
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.google.gson.annotations.SerializedName
@@ -16,12 +17,10 @@ data class ConfessionDataModel(
         @SerializedName("__v") val __v: Int
 )
 
-
-@RequiresApi(Build.VERSION_CODES.O)
-fun ConfessionDataModel.toDomainModel(): ConfessionDomainModel {
+fun ConfessionDataModel.toDomainModel(context : Context): ConfessionDomainModel {
     var time: OffsetDateTime = OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
-    var timePassed = GetTimePassed.getTimeAgo(time.toEpochSecond() * 1000)
+    var timePassed = GetTimePassed.getTimeAgo(time.toEpochSecond() * 1000, context)
 
     if(timePassed == null){
         timePassed = "Moments ago"

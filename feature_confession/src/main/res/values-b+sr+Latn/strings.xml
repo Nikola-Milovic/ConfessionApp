@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">confession</string>
+    <string name="comments">Komentari</string>
+    <string name="add_comment_hint">Komentarišite…</string>
+</resources>

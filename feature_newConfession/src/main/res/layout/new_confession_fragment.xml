@@ -29,19 +29,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/confessionText_EditText"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:hint="Type your confession here..."
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/confessionText_EditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/new_confession_hint"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </ScrollView>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -51,8 +60,10 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -62,6 +73,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Confess" />
+        android:text="@string/confess_button_text" />
 
 </LinearLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">confession</string>
+    <string name="new_confession_hint">Ispišite Vašu ispovest…</string>
+    <string name="confess_button_text">Ispovedajte se</string>
+</resources>

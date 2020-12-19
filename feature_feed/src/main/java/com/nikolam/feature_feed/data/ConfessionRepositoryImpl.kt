@@ -1,5 +1,6 @@
 package com.nikolam.feature_feed.data
 
+import android.content.Context
 import com.nikolam.feature_feed.data.model.ConfessionDataModel
 import com.nikolam.feature_feed.data.model.toDomainModel
 import com.nikolam.feature_feed.domain.ConfessionDomainModel
@@ -13,11 +14,14 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class ConfessionRepositoryImpl (private val confessionFeedService: ConfessionFeedService) :
+class ConfessionRepositoryImpl(
+    private val confessionFeedService: ConfessionFeedService,
+    private val context: Context
+) :
     ConfessionRepository {
 
     @ExperimentalCoroutinesApi
-    override suspend fun getConfessions(sortBy : String): ArrayList<ConfessionDomainModel> =
+    override suspend fun getConfessions(sortBy: String): ArrayList<ConfessionDomainModel> =
         suspendCoroutine { cont ->
             Timber.d("sort by in repo is $sortBy")
             val call = confessionFeedService.getConfessions(sortBy)
@@ -27,8 +31,8 @@ class ConfessionRepositoryImpl (private val confessionFeedService: ConfessionFee
                     call: Call<ArrayList<ConfessionDataModel>>,
                     response: Response<ArrayList<ConfessionDataModel>>
                 ) {
-                    if(response.isSuccessful){
-                        val res = response.body()!!.map { it.toDomainModel() }
+                    if (response.isSuccessful) {
+                        val res = response.body()!!.map { it.toDomainModel(context) }
                         cont.resume(ArrayList(res))
                     } else {
                         cont.resume(arrayListOf())
@@ -36,7 +40,7 @@ class ConfessionRepositoryImpl (private val confessionFeedService: ConfessionFee
                 }
 
                 override fun onFailure(call: Call<ArrayList<ConfessionDataModel>>, t: Throwable) {
-                   cont.resumeWithException(t)
+                    cont.resumeWithException(t)
                 }
 
             })

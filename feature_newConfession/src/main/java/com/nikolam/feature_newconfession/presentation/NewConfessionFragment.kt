@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.nikolam.common.extensions.hideKeyboard
 import com.nikolam.feature_newconfession.databinding.NewConfessionFragmentBinding
 import com.nikolam.feature_newconfession.di.newConfessionModule
 import org.koin.android.ext.android.inject
@@ -41,12 +42,14 @@ class NewConfessionFragment : Fragment() {
         val view = binding.root
 
         binding.goBackButton.setOnClickListener {
+            hideKeyboard()
             activity?.supportFragmentManager?.popBackStackImmediate()
         }
 
         binding.confessButton.setOnClickListener {
             viewModel.saveConfession(binding.confessionTextEditText.text.toString())
         }
+
         viewModel.stateLiveData.observe(viewLifecycleOwner ,stateObserver)
         return view
     }

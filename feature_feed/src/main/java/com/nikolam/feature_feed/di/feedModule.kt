@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 internal val feedModule = module {
     viewModel { FeedViewModel(get(), get()) }
     single { provideNewConfessionService(get()) }
-    single<ConfessionRepository> { ConfessionRepositoryImpl(get()) }
+    single<ConfessionRepository> { ConfessionRepositoryImpl(get(), get()) }
     single { GetConfessionsUseCase(get()) }
 }
 

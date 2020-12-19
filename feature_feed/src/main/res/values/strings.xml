@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_menu_item">Search</string>
+    <string name="confess_menu_item">Confess</string>
+    <string name="saved_menu_item">Saved</string>
+
+
+    <!-- Time and date -->
+    <string name="moments_ago">Moments ago</string>
+</resources>

@@ -28,12 +28,13 @@
 
 
         <TextView
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginRight="70dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adding a comment"
-            android:textSize="25dp"
+            android:text="@string/comment_title"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             />
 
         <ImageButton
@@ -60,7 +61,7 @@
         android:layout_height="match_parent"
         android:background="#00000000"
         android:gravity="top"
-        android:hint="Write comment here..."
+        android:hint="@string/write_comment_hint"
         android:inputType="textCapSentences|textMultiLine"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
