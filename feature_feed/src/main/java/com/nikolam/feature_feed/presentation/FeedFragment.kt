@@ -39,10 +39,22 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
         if (it.isSuccess) {
             adapter.newData(it.confessions)
             binding.swipeRefresh.isRefreshing = false
+
+            if (it.confessions.isEmpty()){
+                binding.emptyAnimation.visibility = View.VISIBLE
+                binding.emptyAnimation.playAnimation()
+                binding.errorTextView.visibility = View.VISIBLE
+                binding.errorTextView.text = resources.getString(R.string.empty_confessions)
+            }
+
         } else if (it.isLoading) {
             binding.swipeRefresh.isRefreshing = true
         } else if (it.isError) {
             binding.swipeRefresh.isRefreshing = false
+            binding.errorAnimation.visibility = View.VISIBLE
+            binding.errorAnimation.playAnimation()
+            binding.errorTextView.visibility = View.VISIBLE
+            binding.errorTextView.text = resources.getString(R.string.error_loading_posts)
         }
     }
 

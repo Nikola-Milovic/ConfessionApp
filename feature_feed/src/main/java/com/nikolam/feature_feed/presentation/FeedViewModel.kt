@@ -41,7 +41,7 @@ internal class FeedViewModel(private val navManager: NavManager, private val get
             getConfessionsUseCase.execute(sortBy).also { result ->
                 when (result) {
                     is GetConfessionsUseCase.Result.Success -> {
-                        result.confessions.add(0, ConfessionDomainModel(0,"","",""))
+                        if(result.confessions.isNotEmpty()) result.confessions.add(0, ConfessionDomainModel(0,"","",""))
                         sendAction(Action.ConfessionsLoadingSuccess(result.confessions))
                     }
                     is GetConfessionsUseCase.Result.Error -> sendAction(Action.ConfessionsLoadingFailure)

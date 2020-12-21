@@ -65,6 +65,8 @@ dependencies {
 
     implementation(LibraryDependency.SWIPE_REFRESH_LAYOUT)
 
+    api(LibraryDependency.LOTTIE_ANIMATION)
+
     implementation(project(":common"))
 
     addTestDependencies()

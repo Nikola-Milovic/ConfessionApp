@@ -7,4 +7,6 @@
 
     <!-- Time and date -->
     <string name="moments_ago">Moments ago</string>
+    <string name="error_loading_posts">Unable to fetch confessions</string>
+    <string name="empty_confessions">No confessions to fetch :(</string>
 </resources>

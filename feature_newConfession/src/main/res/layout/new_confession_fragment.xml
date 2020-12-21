@@ -8,17 +8,16 @@
     tools:context=".presentation.NewConfessionFragment">
 
     <LinearLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary">
+        android:background="@color/colorAccent">
 
         <ImageButton
             android:id="@+id/go_back_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:padding="5dp"
+            android:padding="10dp"
             android:scaleX="1.5"
             android:scaleY="1.5"
             android:src="@drawable/ic_back"
@@ -29,11 +28,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,7 +40,7 @@
             <EditText
                 android:id="@+id/confessionText_EditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="@string/new_confession_hint"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:scrollbars="vertical"

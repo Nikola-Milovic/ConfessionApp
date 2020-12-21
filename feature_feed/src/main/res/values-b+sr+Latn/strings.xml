@@ -6,4 +6,6 @@
 
     <!-- Time and date -->
     <string name="moments_ago">Upravo sada</string>
+    <string name="error_loading_posts">Neuspešno preuzimanje ispovesti</string>
+    <string name="empty_confessions">Nema nijedne ispovesti :(</string>
 </resources>

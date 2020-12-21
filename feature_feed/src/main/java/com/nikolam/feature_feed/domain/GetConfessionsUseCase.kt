@@ -15,9 +15,6 @@ class GetConfessionsUseCase(
         try {
             val response = confessionRepository.getConfessions(sortBy)
             Timber.d("response is $response")
-            if (response.isEmpty()) {
-                return Result.Error(null)
-            }
             return Result.Success(response)
 
         } catch (e: Exception) {
