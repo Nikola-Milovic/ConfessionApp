@@ -18,6 +18,8 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/date_textView"
+                android:padding="5dp"
+                android:textAlignment="viewEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Posted 6 hours ago"

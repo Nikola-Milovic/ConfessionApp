@@ -62,7 +62,10 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
                     viewModel.navigateToNewConfession()
                     true
                 }
-                else -> true
+                else ->{
+                    viewModel.navigateToUnderConstruction()
+                    true
+                }
             }
         }
 

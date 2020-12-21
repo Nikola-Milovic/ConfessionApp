@@ -5,9 +5,6 @@ private object LibraryVersion {
     const val PLAY_CORE = "1.7.3" //164
     const val APP_COMPACT = "1.1.0"
     const val RECYCLER_VIEW = "1.2.0-alpha05"
-    const val COORDINATOR_LAYOUT = "1.1.0"
-    // 1.1.x version is required in order to support the dark theme functionality in
-    // Android Q(adds Theme.MaterialComponents.DayNight)
     const val MATERIAL = "1.1.0-alpha09"
     const val CONSTRAINT_LAYOUT = "1.1.3"
     const val CORE_KTX = "1.1.0"
@@ -15,15 +12,14 @@ private object LibraryVersion {
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.2.0"
     const val ANDROID_LEGACY_SUPPORT = "1.0.0"
-    //Glide
-    const val GLIDE = "4.11.0"
     //Koin
     const val KOIN = "2.2.0"
     const val EASY_PERMISSION = "3.0.0"
-    const val FLOATING_ACTION_BUTTON = "1.10.1"
-    const val ROOM = "2.2.5"
+
     const val RETROFIT = "2.9.0"
     const val SWIPE_REFRESH_LAYOUT  = "1.1.0"
+
+    const val LOTTIE_ANIMATION = "3.5.0"
 }
 
 object LibraryDependency {
@@ -39,11 +35,9 @@ object LibraryDependency {
     //UI
     const val SUPPORT_CONSTRAINT_LAYOUT =
             "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
-    const val APP_COMPACT = "androidx.appcompat:appcompat:${LibraryVersion.APP_COMPACT}"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
-    const val FLOATING_ACTION_BUTTON = "com.getbase:floatingactionbutton:${LibraryVersion.FLOATING_ACTION_BUTTON}"
 
     //LifeCycle
     const val LIFECYCLE_EXTENSIONS =
@@ -56,8 +50,6 @@ object LibraryDependency {
     const val NAVIGATION_FRAGMENT_KTX =
             "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
-    const val NAVIGATION_DYNAMIC_FEATURES =
-            "androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
 
     //Koin
     const val KOIN_ANDROID = "org.koin:koin-android:${LibraryVersion.KOIN}"
@@ -67,13 +59,10 @@ object LibraryDependency {
 
     const val EASY_PERMISSION = "pub.devrel:easypermissions:${LibraryVersion.EASY_PERMISSION}"
 
-    //Room
-    const val ROOM_RUNTIME = "androidx.room:room-runtime:${LibraryVersion.ROOM}"
-    const val ROOM_COMPILER = "androidx.room:room-compiler:${LibraryVersion.ROOM}"
-    const val ROOM_KTX = "androidx.room:room-ktx:${LibraryVersion.ROOM}"
-
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
 
     const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH_LAYOUT}"
+
+    const val LOTTIE_ANIMATION = "com.airbnb.android:lottie:${LibraryVersion.LOTTIE_ANIMATION}"
 }

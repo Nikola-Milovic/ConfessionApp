@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nikolam.common.navigation.ConfessionDetailUri
 import com.nikolam.common.navigation.NavManager
 import com.nikolam.common.navigation.NewConfessionUri
+import com.nikolam.common.navigation.UnderConstructionUri
 import com.nikolam.common.viewmodel.BaseAction
 import com.nikolam.common.viewmodel.BaseViewModel
 import com.nikolam.common.viewmodel.BaseViewState
@@ -51,6 +52,11 @@ internal class FeedViewModel(private val navManager: NavManager, private val get
 
     fun navigateToNewConfession() {
         val uri = Uri.parse(NewConfessionUri)
+        navManager.navigate(uri)
+    }
+
+    fun navigateToUnderConstruction() {
+        val uri = Uri.parse(UnderConstructionUri)
         navManager.navigate(uri)
     }
 

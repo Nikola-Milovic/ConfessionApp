@@ -8,5 +8,6 @@ include(
         ":feature_newConfession",
         ":feature_feed",
         ":feature_confession",
-        ":feature_comment"
+        ":feature_comment",
+        ":underConstruction"
 )

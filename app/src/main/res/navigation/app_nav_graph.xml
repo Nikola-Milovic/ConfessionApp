@@ -35,4 +35,13 @@
         <argument android:name="id" app:argType="string"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/underConstructionFragment"
+        android:name="com.nikolam.underconstruction.UnderConstructionFragment"
+        android:label="UnderConstructionFragment">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="confession://UnderConstruction" />
+    </fragment>
+
 </navigation>
