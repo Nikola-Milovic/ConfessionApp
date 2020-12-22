@@ -43,12 +43,16 @@ Libraries Used
   * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
      asynchronous tasks for optimal execution.
 * [UI][30] - Details on why and how to use UI Components in your apps - together or separate
-  * [Animations & Transitions][31] - Move widgets and transition between screens.
+  * [Material][32] - Material Components for Android is a drop-in replacement for Android's Design Support Library.
   * [Fragment][34] - A basic unit of composable UI.
   * [Layout][35] - Layout widgets using different algorithms.
+  * [RefreshLayout][93] - Layout with swipe to refresh functionality
   * [Lottie][99] - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations and renders them natively on mobile
 * Third party
-  * [Kotlin Coroutines][91] for managing background threads with simplified code and reducing needs for callbacks
+  * [Kotlin Coroutines][91] - Managing background threads with simplified code and reducing needs for callbacks
+  * [Timber][92] - Logger with a small, extensible API which provides utility on top of Android's normal Log class.
+  * [Retrofit][94] - A type-safe HTTP client for Android and Java
+  
 
 [0]: https://developer.android.com/jetpack/components
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -61,10 +65,14 @@ Libraries Used
 [14]: https://developer.android.com/topic/libraries/architecture/navigation/
 [17]: https://developer.android.com/topic/libraries/architecture/viewmodel
 [30]: https://developer.android.com/guide/topics/ui
-[31]: https://developer.android.com/training/animation/
+[32]: https://github.com/material-components/material-components-android
 [34]: https://developer.android.com/guide/components/fragments
 [35]: https://developer.android.com/guide/topics/ui/declaring-layout
 [91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
+[92]: https://github.com/JakeWharton/timber
+[93]: https://developer.android.com/training/swipe/add-swipe-interface
+[94]: https://square.github.io/retrofit/
+[99]: https://github.com/airbnb/lottie-android
 [100]: https://github.com/InsertKoinIO/koin
 
 
