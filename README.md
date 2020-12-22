@@ -3,30 +3,49 @@ An Android application to share and comment on others confessions. Comes togethe
 This is another for fun project, featuring clean and organized architecture, where each layer is responsible for itself and coupling of layers within the application is kept down to a minimum.
 
 
-App showcase
--------------
+# App showcase
+
 
 ![Showcase](images/showcase.gif "Showcase")
 
-Main app screen
---------------
+### Main app screen
 
 
-Error screen
---------------
+
+### Error screen
+
 ![error screen](images/error.gif "Error")
 
-Empty feed
---------------
+### Empty feed
+
 
 ![empty feed](images/emptyfeed.gif "EmptyFeed")
 
-Localized to Serbian
---------------
+### Localized to Serbian
 
 
-Libraries Used
---------------
+# Architecture
+
+Each feature, a logical unit, is placed within a module, meaning that all of the logic for a single screen (usually) is inside a single module. This way of architecturing our app gives us, at least these 3 benefits: 
+
+* Clear isolation between the modules. The whole goal of the MVP pattern is to make sure your business logic and presentations layer are not tightly coupled together. By defining these in different modules it makes this separation more clear and further emphasises decoupling between non-related logic.
+* Code reuse - allows us to have a common module, or a core module that our other modules can implement. The code inside that module can be reused throught the application and features. In our case, we have a Common module and Library test utils. Both featuring multiple useful files and util functions.
+* Splitting your project into sub-project allows more efficient build and testing as you can rebuild and test only the modules that changed rather than recompiling the whole project whenever there's a change in one of the files. In a production environment it also allows programmers to work on different parts of the application without interfering with the work of others.
+
+## Modules
+
+The application is made in a mix of MVP, and MVI/MVVM for the presentation layer. Each Feature-Module consists of a DATA, DOMAIN, PRESENTATION and DI layers. 
+
+We have three kinds of modules in the application:
+
+* app module - this is the main module. It contains code that lays foundation for other modules, it starts Koin and loads the KoinModules used throughout the application, it also features NavHostFragment and NavManager.
+* application-independent Common module containing common code base that could be reused throughout the application and other Modules. It holds util functions and other useful helper classes. And Library-test-utils that holds useful utils needed for easier testing.
+* feature modules - the most common type of module containing all code related to a given feature. Basically a logic unit, where all of the logic for that given functionality is packed together in a single Module. Common examples could be LoginModule, HomepageModule...
+
+
+
+# Libraries Used
+
 
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
   multidex and automated testing.
@@ -35,6 +54,8 @@ Libraries Used
   * [Test][4] - An Android testing framework for unit and runtime UI tests.
 * [Architecture][10] - A collection of libraries that help design robust, testable, and
   maintainable apps.
+  * Clean Architecture (at module level)
+  * MVVM + MVI (presentation layer)
   * [Data Binding][11] - Declaratively bind observable data to UI elements.
   * [Koin][100] - A pragmatic lightweight dependency injection framework for Kotlin developers.
   * [Lifecycles][12] - Create a UI that automatically responds to lifecycle events.
@@ -48,6 +69,9 @@ Libraries Used
   * [Layout][35] - Layout widgets using different algorithms.
   * [RefreshLayout][93] - Layout with swipe to refresh functionality
   * [Lottie][99] - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations and renders them natively on mobile
+* Gradle
+  * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+  * BuildSrc
 * Third party
   * [Kotlin Coroutines][91] - Managing background threads with simplified code and reducing needs for callbacks
   * [Timber][92] - Logger with a small, extensible API which provides utility on top of Android's normal Log class.
@@ -76,7 +100,7 @@ Libraries Used
 [100]: https://github.com/InsertKoinIO/koin
 
 
-## LottieAnimations used in the application
+### LottieAnimations used in the application
 
 [Attention by Houssem Ismail](https://lottiefiles.com/32338-attention)
 
