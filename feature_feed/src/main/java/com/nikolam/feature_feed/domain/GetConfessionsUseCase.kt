@@ -16,7 +16,6 @@ class GetConfessionsUseCase(
             val response = confessionRepository.getConfessions(sortBy)
             Timber.d("response is $response")
             return Result.Success(response)
-
         } catch (e: Exception) {
             Timber.e("exception thrown ${e.localizedMessage}")
             return Result.Error(e)
