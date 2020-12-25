@@ -69,7 +69,5 @@ dependencies {
     implementation(project(":feature_comment"))
     implementation(project(":underConstruction"))
 
-    implementation(LibraryDependency.EASY_PERMISSION)
-
     addTestDependencies()
 }

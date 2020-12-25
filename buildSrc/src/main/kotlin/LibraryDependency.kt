@@ -3,7 +3,6 @@
 private object LibraryVersion {
     const val TIMBER = "4.7.1"
     const val PLAY_CORE = "1.7.3" //164
-    const val APP_COMPACT = "1.1.0"
     const val RECYCLER_VIEW = "1.2.0-alpha05"
     const val MATERIAL = "1.1.0-alpha09"
     const val CONSTRAINT_LAYOUT = "1.1.3"
@@ -14,7 +13,6 @@ private object LibraryVersion {
     const val ANDROID_LEGACY_SUPPORT = "1.0.0"
     //Koin
     const val KOIN = "2.2.0"
-    const val EASY_PERMISSION = "3.0.0"
 
     const val RETROFIT = "2.9.0"
     const val SWIPE_REFRESH_LAYOUT  = "1.1.0"
@@ -30,7 +28,6 @@ object LibraryDependency {
     const val COROUTINES_ANDROID =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoreVersion.COROUTINES_ANDROID}"
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${CoreVersion.COROUTINES_ANDROID}"
-    const val CORE_KTX = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
 
     //UI
     const val SUPPORT_CONSTRAINT_LAYOUT =
@@ -56,8 +53,6 @@ object LibraryDependency {
     const val KOIN_ANDROID_SCOPE = "org.koin:koin-android-scope:${LibraryVersion.KOIN}"
     const val KOIN_ANDROID_VIEWMODEL = "org.koin:koin-android-viewmodel:${LibraryVersion.KOIN}"
     const val KOIN_ANDROID_EXTENSION = "org.koin:koin-android-ext:${LibraryVersion.KOIN}"
-
-    const val EASY_PERMISSION = "pub.devrel:easypermissions:${LibraryVersion.EASY_PERMISSION}"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
