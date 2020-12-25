@@ -146,6 +146,9 @@ Manages dependancies for the given module. It connects all of the different laye
 [99]: https://github.com/airbnb/lottie-android
 [100]: https://github.com/InsertKoinIO/koin
 
+### Disclaimer
+
+The error handling in the application should be improved. Different error codes sent by the server should be handled to inform the user of what is wrong. Generally communication with the user is kept to a minimum intentionally. It's mostly tedious work of just checking what went wrong, which without a doubt should be done in a commercial app. This is just an example of some new stuff I've learned and isn't meant to be fully-featured project.
 
 ### LottieAnimations used in the application
 
