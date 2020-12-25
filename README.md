@@ -23,6 +23,7 @@ This is another for fun project, featuring clean and organized architecture, whe
 
 ### Localized to Serbian
 
+![serbian](images/serbian.gif "Serbian")
 
 # Architecture
 
@@ -34,7 +35,9 @@ Each feature, a logical unit, is placed within a module, meaning that all of the
 
 ## Modules
 
-The application is made in a mix of MVP, and MVI/MVVM for the presentation layer. Each Feature-Module consists of a DATA, DOMAIN, PRESENTATION and DI layers. 
+The application is made in a mix of MVP, and MVI/MVVM for the presentation layer. 
+
+![architecturediagram](images/architecturediagram.png "ArchitectureDiagram")
 
 We have three kinds of modules in the application:
 
@@ -42,6 +45,53 @@ We have three kinds of modules in the application:
 * application-independent Common module containing common code base that could be reused throughout the application and other Modules. It holds util functions and other useful helper classes. And Library-test-utils that holds useful utils needed for easier testing.
 * feature modules - the most common type of module containing all code related to a given feature. Basically a logic unit, where all of the logic for that given functionality is packed together in a single Module. Common examples could be LoginModule, HomepageModule...
 
+### Structure of feature modules
+
+Each feature should be responsible for itself, meaning it should be as decoupled as possible. That is firstly achieved by spliting them up in different modules, then each feature module is consisting of DATA, DOMAIN, PRESENTATION and DI layers
+
+![layers](images/layers.png "LayersDiagram")
+
+#### Presentation layer
+
+This layer is closest to what the user sees on the screen. The `presentation` layer is a mix of `MVVM` (Jetpack `ViewModel` used to preserve data across activity restart) and
+`MVI` (`actions` modify the `common state` of the view and then new state is edited to a view via `LiveData` to be rendered).
+Fragments are connected to the layouts and views with the help of [ViewBinding](https://developer.android.com/topic/libraries/view-binding), a more lightweight DataBinding with less capability but faster compile time.
+
+> `common state` (for each view) approach derives from
+> [Unidirectional Data Flow](https://en.wikipedia.org/wiki/Unidirectional_Data_Flow_(computer_science)) and [Redux
+58
+> principles](https://redux.js.org/introduction/three-principles).
+
+Components:
+- **View (Fragment)** - presents data on the screen and pass user interactions to View Model. Views are hard to test, so they should be as simple as possible.
+- **ViewModel** - dispatches (through `LiveData`) state changes to the view and deals with user interactions (these view models are not simply [POJO classes](https://en.wikipedia.org/wiki/Plain_old_Java_object)).
+- **ViewState** - common state for a single view
+- **NavManager** - singleton that facilitates handling all navigation events inside `NavHostActivity` (instead of separately, inside each view)
+
+#### Domain layer
+
+This is the core layer of the application. Notice that the `domain` layer is independent of any other layers. This allows to make domain models and business logic independent from other layers.
+In other words, changes in other layers will have no effect on `domain` layer eg. changing database (`data` layer) or screen UI (`presentation` layer) ideally will not result in any code change withing `domain` layer.
+
+Components:
+- **UseCase** - contains business logic
+- **DomainModel** - defies the core structure of the data that will be used within the application. This is the source of truth for application data.
+- **Repository interface** - required to keep the `domain` layer independent from the `data layer` ([Dependency inversion](https://en.wikipedia.org/wiki/Dependency_inversion_principle)).
+
+#### Data layer
+
+Manages application data and exposes these data sources as repositories to the `domain` layer. Typical responsibilities of this layer would be to retrieve data from the internet and optionally cache this data locally.
+
+Components:
+- **Repository** is exposing data to the `domain` layer. Depending on application structure and quality of the external APIs repository can also merge, filter, and transform the data. The intention of
+these operations is to create high-quality data source for the `domain` layer, not to perform any business logic (`domain` layer `use case` responsibility).
+
+- **Mapper** - maps `data model` to `domain model` (to keep `domain` layer independent from the `data` layer).
+- **RetrofitService** - defines a set of API endpoints.
+
+### DI layer
+
+Manages dependancies for the given module. It connects all of the different layers of the application. It is consisting of a single KoinModule that gets loaded on Fragments attachment and unloaded onDetach. It provides Usecases to the ViewModel, Repository to the Usecases, Services to the Repository and so on...
 
 
 # Libraries Used
@@ -107,5 +157,14 @@ We have three kinds of modules in the application:
 [Spaceship by Arman Rokni](https://lottiefiles.com/4011-spaceship-empty-searching)
 
 [Construction in progress by Ki8.net](https://lottiefiles.com/26531-construction-in-process)
+
+### Acknowledgements
+
+[Android showcase by Igorwojda](https://github.com/igorwojda/android-showcase)
+
+[Android Sunflower app](https://github.com/android/sunflower)
+
+[Android architecture samples](https://github.com/android/architecture-samples)
+
 
 
