@@ -8,9 +8,6 @@ This is another for fun project, featuring clean and organized architecture, whe
 
 ![Showcase](images/showcase.gif "Showcase")
 
-### Main app screen
-
-
 
 ### Error screen
 
